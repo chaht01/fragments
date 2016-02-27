@@ -27,3 +27,22 @@ $(document).ready(function () {
         $("body").removeClass("ready2")
     });
 });
+
+function getAvgColor(sx, sy, dx, dy, ctx) {
+    var r = 0;
+    var g = 0;
+    var b = 0;
+    var sizeX = dx-sx;
+    var sizeY = dy-sy;
+    var data = ctx.getImageData(sx, sy, sizeX, sizeY).data;
+
+    for (var i=0; i<data.length ;i+=4){
+        r += data[i];
+        g += data[i+1];
+        b += data[i+2];
+    }
+    r = Math.floor(r / (data.length /4));
+    g = Math.floor(g / (data.length /4));
+    b = Math.floor(b / (data.length /4));
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
